@@ -5,6 +5,9 @@ using Newtonsoft.Json.Converters;
 
 namespace BikeDashboard.DTO
 {
+    /// <summary>
+    /// OpenWeatherMap deserialization object
+    /// </summary>
 	public class Main
     {
         public double temp { get; set; }

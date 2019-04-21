@@ -6,11 +6,11 @@ namespace BikeDashboard.Models
 		public Rain Rain {get;}
 		public Temperature Temperature { get; }
 		public Wind Wind { get; }
-		public String Description { get; }
-		public String WeatherGroup { get; }
+		public string Description { get; }
+		public string WeatherGroup { get; }
 		public DateTime ForecastTime { get; }
 
-		public WeatherForecast(Rain rain, Temperature temperature, Wind wind, String description, string weatherGroup, DateTime forecastTime)
+		public WeatherForecast(Rain rain, Temperature temperature, Wind wind, string description, string weatherGroup, DateTime forecastTime)
         {
 			Rain = rain;
 			Temperature = temperature;
