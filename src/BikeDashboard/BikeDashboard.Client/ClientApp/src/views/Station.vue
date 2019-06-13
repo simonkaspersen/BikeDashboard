@@ -3,42 +3,23 @@
         <v-layout row wrap>
             <v-flex xs12>
                 <v-alert
-                        :value="stationData.showingClosestStationWithBikes"
+                        :value="selectedStation.showingClosestStationWithBikes"
                         type="info"
                 >
-                    {{stationData.originalStationName}} had no available bikes. Showing closest bikestation.
+                    {{selectedStation.originalStationName}} had no available bikes. Showing closest bikestation.
                 </v-alert>
             </v-flex>
             <v-flex xs12>
-                <div class="display-3 font-weight-light">{{stationData.station.name}}</div>
+                <div class="display-4 font-weight-light">{{ stationName }}</div>
             </v-flex>
-            <v-flex xs12 md6>
+            <v-flex xs12 md6 offset-md3>
                 <v-card
                         class="mx-auto"
                         color="#26c6da"
                         dark
                 >
-                    <v-card-title>
-                        <span class="title font-weight-light">Tilgjengelige sykler</span>
-                    </v-card-title>
-
-                    <v-card-text class="headline font-weight-bold">
-                        <v-icon dark>directions_bike</v-icon> {{stationData.station.availableBikes}}
-                    </v-card-text>
-                </v-card>
-            </v-flex>
-            <v-flex xs12 md6>
-                <v-card
-                        class="mx-auto"
-                        color="#26c6da"
-                        dark
-                >
-                    <v-card-title>
-                        <span class="title font-weight-light">Sykkellåser</span>
-                    </v-card-title>
-
-                    <v-card-text class="headline font-weight-bold">
-                        <v-icon dark>lock</v-icon> {{stationData.station.availableLocks}}
+                    <v-card-text class="headline font-weight-bold" style="margin-top: 30px">
+                        <div class="display-3 font-weight-light"><v-icon style="font-size: 55px;" dark>directions_bike</v-icon> {{availableBikes}} / <v-icon style="font-size: 55px;" dark>lock</v-icon> {{availableLocks}}</div>
                     </v-card-text>
                 </v-card>
             </v-flex>
@@ -47,23 +28,19 @@
 </template>
 
 <script>
-    import StationService from '../../services/stationService';
-
+    import _ from 'lodash'
     export default {
-        data() {
-            return {
-                favoriteStation: "gløshaugen",
-                stationData: {},
+        props: ['selectedStation', 'loadingStation'],
+        computed: {
+          stationName() {
+              return _.get(this.selectedStation, 'station.name')
+          },
+            availableBikes() {
+                return _.get(this.selectedStation, 'station.availableBikes')
+            },
+            availableLocks() {
+                return _.get(this.selectedStation, 'station.availableLocks')
             }
-        },
-        methods: {
-            async getStation() {
-                const response = await StationService.getStation({favoriteStation: this.favoriteStation});
-                this.stationData = response.data
-            }
-        },
-        created() {
-            this.getStation();
         }
     }
 </script>
