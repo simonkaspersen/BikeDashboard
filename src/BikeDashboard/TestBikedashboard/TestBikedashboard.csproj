@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -41,6 +41,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BikeDashboard\BikeDashboard.csproj" />
+    <ProjectReference Include="..\BikeDashboard.API\BikeDashboard.API.csproj" />
   </ItemGroup>
 </Project>
